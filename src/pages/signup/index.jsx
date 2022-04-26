@@ -4,6 +4,7 @@ import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+  document.title = "Tickitz | Sign Up";
   const navigate = useNavigate();
   const [form, setForm] = useState({
     firstName: "",

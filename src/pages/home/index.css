@@ -5,17 +5,17 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.banner {
+.home__banner {
   text-align: center;
 }
 
-.banner1__size,
-.banner2__size {
-  margin: 10% 10% 0;
+.home_banner1__size,
+.home_banner2__size {
+  margin: 3% 5% 0;
 }
 
-article {
-  display: flex; /* flex container */
+.home_article {
+  display: flex;
   color: #5f2eea;
   justify-content: space-around;
   padding: 5% 10% 2%;
@@ -24,6 +24,7 @@ article {
 
 .article__caption1 {
   flex: 1;
+  text-align: start;
   font-size: 18px;
 }
 .article__caption2 {
@@ -42,7 +43,7 @@ article {
   vertical-align: middle;
   white-space: nowrap;
   padding-top: 2%;
-  padding-bottom: 12%;
+  padding-bottom: 5%;
   overflow-x: auto;
   display: flex;
 }
@@ -207,7 +208,7 @@ article {
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
     "Open Sans", "Helvetica Neue", sans-serif;
-  margin: 5%;
+  margin: 5% 5% 0;
   padding: 1%;
   border-radius: 10px;
   box-shadow: 2px 20px 20px 20px #ededed;
@@ -245,59 +246,9 @@ article {
   margin: 20px;
 }
 
-.footerweb {
-  margin: 5%;
-}
-
-.footerweb__logo {
-  width: 160px;
-  margin: 10px 0;
-}
-
-h5 {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.footerweb__item--content {
-  color: #6e7191;
-  margin-top: 5px;
-  font-size: 16px;
-}
-
-.footerweb__item--sponsor {
-  margin: 15px 0;
-  width: 50px;
-}
-
-.footerweb__item--acc {
-  margin-right: 10px;
-  width: 18px;
-  height: 20px;
-}
-
-.acc__link {
-  color: #6e7191;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.acc__link:hover {
-  color: #5f2eea;
-}
-
-footer {
-  text-align: center;
-  color: #4e4b66;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Open Sans", "Helvetica Neue", sans-serif;
-  font-size: 14px;
-  margin: 2%;
-}
-
 @media (max-width: 1000px) {
-  .banner1__size {
-    margin-top: 40%;
+  .home_banner1__size {
+    margin-top: 3%;
   }
   .join__input {
     width: 300px;
@@ -315,23 +266,5 @@ footer {
   }
   h5 {
     margin-top: 30px;
-  }
-  .footerweb__mobile {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .footerweb__item--content {
-    flex: 1;
-    margin: 3%;
-  }
-  .footerweb__item--sponsor {
-    width: auto;
-    height: 20px;
-  }
-  .acc__link {
-    display: none;
-  }
-  footer {
-    margin: 10%;
   }
 }
