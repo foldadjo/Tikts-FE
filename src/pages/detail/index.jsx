@@ -36,7 +36,7 @@ export default function Detail() {
 
   const handleListSchedule = async () => {
     try {
-      const resultSchedule = await axios.get(`/schedule?searchMovieId=${params.id}`);
+      const resultSchedule = await axios.get(`schedule?searchMovieId=${params.id}`);
       setDataSchedule(resultSchedule.data.data);
     } catch (error) {
       setIsError(true);
