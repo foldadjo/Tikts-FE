@@ -43,12 +43,12 @@ h2 {
   margin: 5px;
   border: 2px solid #ededed;
   border-radius: 10px;
+  cursor: pointer;
 }
 .payment__border img {
   max-width: 100%;
 }
-.payment__border:hover {
-  cursor: pointer;
+.payment__border:focus {
   background-color: #5f2eea;
   border: #5f2eea;
 }
