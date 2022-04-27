@@ -172,7 +172,7 @@ export default function Payment() {
                 </div>
           </div>
           <div className="col-md-8 button">
-            <button pnClick={handleBack} className="button1">Change your movie</button>
+            <button onClick={handleBack} className="button1">Change your movie</button>
             <button onClick={() => handleCard()} className="button2">Checkout now</button>
           </div>
       <Footer/>
