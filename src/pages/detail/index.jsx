@@ -6,6 +6,7 @@ import Footer from "../../components/footer"
 import "./index.css"
 
 export default function Detail() {
+  document.title = "Tickitz | Detail";
   const navigate = useNavigate();
   const params = useParams();
   const [data, setData] = useState([]);

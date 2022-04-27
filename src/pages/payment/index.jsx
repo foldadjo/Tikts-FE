@@ -5,7 +5,8 @@ import Footer from "../../components/footer"
 import "./index.css"
 import axios from "../../utils/axios";
 
-export default function Order() {
+export default function Payment() {
+  document.title = "Tickitz | Payment";
   const navigate = useNavigate();
   const { state } = useLocation();
   const [ data, setData] = useState([])

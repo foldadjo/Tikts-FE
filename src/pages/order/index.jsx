@@ -7,6 +7,7 @@ import "./index.css"
 import axios from "../../utils/axios";
 
 export default function Order() {
+  document.title = "Tickitz | Order";
   const navigate = useNavigate();
   const { state } = useLocation();
   const [ data, setData] = useState([])
