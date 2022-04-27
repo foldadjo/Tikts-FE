@@ -10,12 +10,12 @@ export default function Order() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const [ data, setData] = useState([])
-  const listSeat = ["A", "B", "C", "D", "E", "F", "G"];
   const [selectedSeat, setSelectedSeat] = useState([]);
   const [reservedSeat, setReservedSeat] = useState([]);
+  const [dataOrder, setDataOrder] = useState(state);
 
   //   PROSES GET SEAT
-
+  const listSeat = ["A", "B", "C", "D", "E", "F", "G"];
   const handleSelectSeat = (seat) => {
     console.log(seat);
     if (selectedSeat.includes(seat)) {
@@ -25,6 +25,9 @@ export default function Order() {
       setSelectedSeat(deleteSeat);
     } else {
       setSelectedSeat([...selectedSeat, seat]);
+      const allseat = selectedSeat + "," + seat
+      const totalPayment = allseat.split(",").length * data[0].price
+      setDataOrder({ ...dataOrder, seat: allseat.split(","), totalPayment});
     }
   };
 
@@ -56,12 +59,12 @@ export default function Order() {
     }
   }
 
-
   const handleBooking = () => {
+    navigate("/payment", { state: dataOrder })
     console.log(state);
     console.log(selectedSeat);
-    console.log(reservedSeat);
-    console.log(data)
+    console.log(dataOrder);
+    console.log(data[0].price)
   };
 
   const handleMovie = () => {
@@ -135,50 +138,52 @@ export default function Order() {
           </div>
         </div>
         <div className="col-md-4">
-          <div className="card">Order Info</div>
-          <div className="body__content">
-            <div className="info__header">
-              <img
-                src={data.map((item)=>(item.premiere))[0]==="Ebu.Id"?require("../../assets/logo ebv.png")
-                :data.map((item)=>(item.premiere))[0]==="hiflix"?require("../../assets/logo hiflix.png")
-                :data.map((item)=>(item.premiere))[0]==="cinemaOne"?require("../../assets/logo cineone.png")
-                :require("../../assets/Tickitz 2.png")}
-                alt="logo"
-              />
-              <h3>{data.map((item)=>(item.premiere))}</h3>
-            </div>
-            <hr />
-            <div>
-            <div style={{display: "flex"}} className="info__detail">
-              <object style={{flex: "1"}} className="info__detail--title">
-                Movie selected
-              </object>
-              <object className="info__detail--value">{data.map((item)=>(item.name))[0]}</object>
-            </div>
-            <div style={{display: "flex"}} className="info__detail">
-              <object style={{flex: "1"}} className="info__detail--title">
-                Tuesday, 07 July 2020
-              </object>
-              <object className="info__detail--value">{state.timeBooking}</object>
-            </div>
-            <div style={{display: "flex"}} className="info__detail">
-              <object style={{flex: "1"}} className="info__detail--title">
-                One ticket price
-              </object>
-              <object className="info__detail--value">Rp. {data.map((item)=>(item.price))[0]}</object>
-            </div>
-            <div style={{display: "flex"}} className="info__detail">
-              <object style={{flex: "1"}} className="info__detail--title">
-                Seat choosed
-              </object>
-              <object className="info__detail--value">{selectedSeat + ""} </object>
+          <div className="body__header">
+          <h2>Order Info</h2>
+            <div className="body__content">
+              <div className="info__header">
+                <img
+                  src={data.map((item)=>(item.premiere))[0]==="Ebu.Id"?require("../../assets/logo ebv.png")
+                  :data.map((item)=>(item.premiere))[0]==="hiflix"?require("../../assets/logo hiflix.png")
+                  :data.map((item)=>(item.premiere))[0]==="cinemaOne"?require("../../assets/logo cineone.png")
+                  :require("../../assets/Tickitz 2.png")}
+                  alt="logo"
+                />
+                <h3>{data.map((item)=>(item.premiere))}</h3>
+              </div>
+              <hr />
+              <div>
+              <div style={{display: "flex"}} className="info__detail">
+                <object style={{flex: "1"}} className="info__detail--title">
+                  Movie selected
+                </object>
+                <object className="info__detail--value">{data.map((item)=>(item.name))[0]}</object>
+              </div>
+              <div style={{display: "flex"}} className="info__detail">
+                <object style={{flex: "1"}} className="info__detail--title">
+                  Tuesday, 07 July 2020
+                </object>
+                <object className="info__detail--value">{state.timeBooking}</object>
+              </div>
+              <div style={{display: "flex"}} className="info__detail">
+                <object style={{flex: "1"}} className="info__detail--title">
+                  One ticket price
+                </object>
+                <object className="info__detail--value">Rp. {data.map((item)=>(item.price))[0]}</object>
+              </div>
+              <div style={{display: "flex"}} className="info__detail">
+                <object style={{flex: "1"}} className="info__detail--title">
+                  Seat choosed
+                </object>
+                <object className="info__detail--value">{selectedSeat + ""} </object>
+              </div>
             </div>
           </div>
-          </div>
+        </div>
         </div>
         <div className="col-md-8 button">
             <button className="button1" onClick={handleMovie}>Change your movie</button>
-            <button className="button2" onClick={handleBooking}>Checkout now</button>
+            <button className="button2"  onClick={handleBooking}>Checkout now</button>
           </div>
       </div>
       <Footer/>

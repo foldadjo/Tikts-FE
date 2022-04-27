@@ -32,7 +32,7 @@ export default function Seat(props) {
                   : "seat__list--available"
               }`}
               onClick={() => {
-                reserved.includes(item) ? null : selectedSeat(item);
+                reserved.includes(item) ? changeDataBooking({seat: item}) : selectedSeat(item);
               }}
             ></div>
           </div>

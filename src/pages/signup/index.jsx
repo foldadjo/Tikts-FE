@@ -3,7 +3,7 @@ import "./index.css"
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Signup() {
   document.title = "Tickitz | Sign Up";
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -143,4 +143,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup

@@ -44,7 +44,6 @@ function Login() {
   };
 
   const handleSignup = () => {
-    document.title = "Tickitz | Sign In";
     navigate("/register");
   };
 

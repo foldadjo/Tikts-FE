@@ -10,6 +10,8 @@ import SignUp from "./pages/signup";
 import Home from "./pages/home";
 import Detail from "./pages/detail";
 import Booking from "./pages/order";
+import Payment from "./pages/payment";
+import Bookingstatus from "./pages/bookingstatus";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="detail/:id" element={<Detail />} />
         <Route path="order" element={<Booking />} />
+        <Route path="payment" element={<Payment />} />
+        <Route path="bookingstatus" element={<Bookingstatus />} />
       </Routes>
     </BrowserRouter>
   );
