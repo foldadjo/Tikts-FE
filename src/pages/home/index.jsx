@@ -50,7 +50,7 @@ function Home() {
   };
 
   const handleDetailMovie = (id) => {
-    navigate(`/basic/detail/${id}`);
+    navigate(`/detail/${id}`);
     console.log(id);
   };
 

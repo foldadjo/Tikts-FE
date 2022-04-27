@@ -24,17 +24,18 @@ function Login() {
     try {
       event.preventDefault();
       const resultRegister = await axios.post("auth/register", form);
-      const resultUser = [
-        {
-          id: 1,
-          name: "Bagus"
-        }
-      ];
+      // const resultName = await axios.get(`user/${resultLogin.data.data.id}`);
+      // const resultUser = [
+      //   {
+      //     id: resultLogin.data.data.id,
+      //     name: resultName.data.data
+      //   }
+      // ];
       setIsError(false);
       setMessage(resultRegister.data.msg);
       localStorage.setItem("token", resultRegister.data.data.token);
       localStorage.setItem("refreshToken", resultRegister.data.data.refreshToken);
-      localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
+      // localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
       navigate("/login");
 
     } catch (error) {

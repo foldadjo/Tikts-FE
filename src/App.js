@@ -8,6 +8,8 @@ import BasicOrder from "./pages/basic/Order";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
 import Home from "./pages/home";
+import Detail from "./pages/detail";
+import Booking from "./pages/order";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
         <Route path="basic/order" element={<BasicOrder />} />
         <Route path="login" element={<SignIn />} />
         <Route path="register" element={<SignUp />} />
-        <Route path="home" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="detail/:id" element={<Detail />} />
+        <Route path="order" element={<Booking />} />
       </Routes>
     </BrowserRouter>
   );

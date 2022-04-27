@@ -4,6 +4,7 @@ import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
+  document.title = "Tickitz | Sign In";
   const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
@@ -20,10 +21,11 @@ function Login() {
     try {
       event.preventDefault();
       const resultLogin = await axios.post("auth/login", form);
+      const resultName = await axios.get(`user/${resultLogin.data.data.id}`);
       const resultUser = [
         {
-          id: 1,
-          name: "Bagus"
+          id: resultLogin.data.data.id,
+          name: resultName.data.data.name
         }
       ];
       setIsError(false);
@@ -31,7 +33,8 @@ function Login() {
       localStorage.setItem("token", resultLogin.data.data.token);
       localStorage.setItem("refreshToken", resultLogin.data.data.refreshToken);
       localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
-      navigate("/basic/home");
+      console.log(resultUser);
+      navigate("/");
 
     } catch (error) {
       console.log(error.response);

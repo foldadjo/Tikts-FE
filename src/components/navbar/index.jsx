@@ -1,11 +1,13 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-
 function Navbar() {
   const navigate = useNavigate();
   const handleSignin = () => {
     navigate("/login");
+  };
+  const handleHomepage = () => {
+    navigate("/");
   };
 
   return (
@@ -14,7 +16,7 @@ function Navbar() {
       className="navbar navbar-expand-lg navbar-light fixed-top bg-white text-center"
     >
       <div className="container">
-        <a className="navbar-brand" href="home.html"
+        <a className="navbar-brand" onClick={handleHomepage}
           ><img src={require("../../assets/Tickitz 2.png")} alt="logo"
         /></a>
         <button
@@ -35,7 +37,7 @@ function Navbar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li><hr className="dropdown-divider" /></li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Home</a>
+              <a className="nav-link" onClick={handleHomepage}>Home</a>
             </li>
             <li><hr className="dropdown-divider" /></li>
             <li className="nav-item">
