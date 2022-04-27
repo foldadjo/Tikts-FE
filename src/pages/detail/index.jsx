@@ -52,8 +52,6 @@ export default function Detail() {
   };
 
   const handleBooking = () => {
-    // [1] = localstorage
-    // [2] = lempar data dengan state
     navigate("/order", { state: dataOrder });
   };
 
