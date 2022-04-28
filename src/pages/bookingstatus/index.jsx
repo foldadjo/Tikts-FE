@@ -48,9 +48,6 @@ function Bookingstatus() {
             Jam Tayang : {state.timeBooking}
         </h1>
         <h1>
-            Jam Tayang : {state.timeBooking}
-        </h1>
-        <h1>
             Lokasi : {dataSchedule.map((item)=>(item.location))}
         </h1>
         <h1>
