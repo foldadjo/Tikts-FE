@@ -21,7 +21,7 @@ we learn Local Storage, Private Route, Conditional Rendering, and REDUX
 
 ## LAMPIRAN
 
-[WEBSITE](https://tiketjauhar.netlify.app/)
-![HOME PAGE](/src/assets/Homepage.JPG)
-![PAGE DETAIL](/src/assets/Detailpage.JPG)
-![DETAIL PAGE](/src/assets/Orderpage.JPG)
+- [CLIK WEBSITE PROJECT !!](https://tiketjauhar.netlify.app/)
+- HOME PAGE ![HOME PAGE](/src/assets/Homepage.JPG)
+- PAGE DETAIL ![PAGE DETAIL](/src/assets/Detailpage.JPG)
+- ORDER PAGE ![ORDER PAGE](/src/assets/Orderpage.JPG)
