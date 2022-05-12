@@ -23,8 +23,13 @@ we learn Local Storage, Private Route, Conditional Rendering, and REDUX
 
 - [CLIK WEBSITE PROJECT !!](https://tiketjauhar.netlify.app/)
 - HOME PAGE
-- ![HOME PAGE](/src/assets/Homepage.JPG)
+
+![HOME PAGE](/src/assets/Homepage.JPG)
+
 - PAGE DETAIL
-- ![PAGE DETAIL](/src/assets/Detailpage.JPG)
+
+![PAGE DETAIL](/src/assets/Detailpage.JPG)
+
 - ORDER PAGE
-- ![ORDER PAGE](/src/assets/Orderpage.JPG)
+
+![ORDER PAGE](/src/assets/Orderpage.JPG)
