@@ -1,0 +1,51 @@
+.month {
+  margin: 20px 5% 0;
+  text-align: center;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.month__text {
+  width: 150px;
+  margin: 5px;
+  padding: 10px;
+  color: #5f2eea;
+  border: 2px solid #5f2eea;
+  background-color: white;
+  border-radius: 10px;
+}
+.month__text:hover {
+  background-color: #5f2eea;
+  color: white;
+}
+
+.movie__view {
+  width: 20%;
+}
+
+.movie__image {
+  border-radius: 10px;
+  padding: 125px 25px;
+  top: 100px;
+  margin: 5px 3px;
+  border: 2px solid white;
+}
+
+.movie__image2 {
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  padding: 25px;
+  top: 100px;
+  margin: 5px 3px;
+  border: 2px solid #f5f6f8;
+  align-items: center;
+  height: 420px;
+}
+
+.movie__image--size {
+  background-color: #5f2eea;
+  flex: 6;
+  width: 150px;
+  height: 220px;
+  border-radius: 10px;
+}

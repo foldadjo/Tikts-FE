@@ -2,8 +2,10 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
   const navigate = useNavigate();
-  const handleSignin = () => {
+  const handleLogout = () => {
+    localStorage.clear();
     navigate("/login");
   };
   const handleHomepage = () => {
@@ -12,9 +14,13 @@ function Navbar() {
 
   return (
     <>
-      <nav
-      className="navbar navbar-expand-lg navbar-light fixed-top bg-white text-center"
-    >
+      <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossOrigin="anonymous"
+    />
+    <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white text-center">
       <div className="container">
         <a className="navbar-brand" onClick={handleHomepage}
           ><img src={require("../../assets/Tickitz 2.png")} alt="logo"
@@ -48,10 +54,10 @@ function Navbar() {
           <a>
             <button
               className="btn btn-outline-success bg-white"
-              onClick={handleSignin}
+              onClick={() => handleLogout()}
               type="submit"
             >
-              Sign in
+              Log out
             </button>
           </a>
           <ul className="navbar-nav mb-2 mb-lg-0">
@@ -60,6 +66,20 @@ function Navbar() {
         </div>
       </div>
     </nav>
+    <script
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossOrigin="anonymous"
+    ></script>
+    <script
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossOrigin="anonymous"
+    ></script>
     </>
   )
 }

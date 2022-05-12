@@ -22,6 +22,12 @@ function Card(props) {
         <button className="btn btn-primary" onClick={() => props.handleDetail(id)}>
           Detail
         </button>
+        <button className="btn btn-secondary" onClick={() => props.setUpdate(props.data)}>
+          Update
+        </button>
+        <button className="btn btn-danger" onClick={() => props.handleDelete(id)}>
+          Delete
+        </button>
       </div>
     </div>
   );
