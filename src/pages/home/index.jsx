@@ -143,6 +143,22 @@ function Home() {
           </object>
         ))}
       </section>
+        <section className="join">
+        <h2 className="join-h2">Be the vangeard of the</h2>
+        <h1 className="join-h1">
+          Moviegoers
+        </h1>
+        <input
+          className="join__input"
+          type="email"
+          placeholder="Type your email"
+        />
+        <button className="join__input--button">join now</button>
+        <div className="join__desc">
+          <div>By joining as a Tickits member,</div>
+          <div>we will aways send you the latest update via email.</div>
+        </div>
+      </section>
       <Footer/>
     </div>
   );

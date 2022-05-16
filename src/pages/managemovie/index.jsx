@@ -141,7 +141,7 @@ export default function Managemovie() {
     });
   };
   const [sort, setSort] = useState(null);
-  const [searchName, setSearchName] = useState("")
+  const [searchName, setSearchName] = useState("");
   const [isError, setIsError] = useState(false);
 
   const handleSort = (event) => {
@@ -177,95 +177,136 @@ export default function Managemovie() {
 
 
   return (
-    <div className="container">
+    <div className="container bg-light">
       <h1>Manage Movie Page</h1>
       <hr />
       <Navbar/>
-      <form onSubmit={isUpdate? handleUpdate: handleSubmit}>
-        <input
-          type="text"
-          placeholder="Input Name ..."
-          name="name"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.name}
-        />
+      <form className="bg-white p-5 m-4" onSubmit={isUpdate? handleUpdate: handleSubmit}>
+        <div className="row">
+          <object className="col-3">
+            <div className="card manage-image--size p-4 m-4">
+              {isUpdate? ( !image ?
+                  (<img src= {`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${form.image}`}/>)
+                  :(image && <img src={image} alt="image movie preview" />)
+              ): (!image?(
+                  <img src="https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg" alt="image" />)
+                  :
+                  (image && <img src={image} alt="image movie preview" />)
+              )}
+            </div>
+          </object>
+          <object className="col-9">
+            <div className="row">
+              <object className="col">
+                <div className="text-secondary">Movie Name</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="text"
+                  placeholder="Input Name ..."
+                  name="name"
+                  onChange={(event)=> handleChangeForm(event)}
+                  value={form.name}
+                />
+              </object>
+              <object className="col">
+                <div className="text-secondary">Category</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="text"
+                  placeholder="Input Category ..."
+                  name="category"
+                  onChange={(event)=> handleChangeForm(event)}
+                  value={form.category}
+                />
+              </object>
+            </div>
+            <div className="row">
+              <object className="col">
+                <div className="text-secondary">Director</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="text"
+                  placeholder="Input Director ..."
+                  name="director"
+                  onChange={(event)=> handleChangeForm(event)}
+                  value={form.director}
+                />
+              </object>
+              <object className="col">
+                <div className="text-secondary">Casts</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="text"
+                  placeholder="Input Casts ..."
+                  name="casts"
+                  onChange={(event)=> handleChangeForm(event)}
+                  value={form.cast}
+                />
+              </object>
+            </div>
+            <div className="row">
+              <object className="col">
+                <div className="text-secondary">Release Date</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="date"
+                  placeholder="Input Release Date ..."
+                  name="releaseDate"
+                  onChange={(event)=> handleChangeForm(event)}
+                />
+              </object>
+              <object className="col">
+                <div className="text-secondary">Duration</div>
+                <input
+                  className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
+                  type="text"
+                  placeholder="Input Duration ..."
+                  name="duration"
+                  onChange={(event)=> handleChangeForm(event)}
+                  value={form.duration}
+                />
+              </object>
+            </div>
+            <br />       
+            <input
+              type="file"
+              name="image"
+              onChange={(event)=> handleChangeForm(event)}
+            />
+            <br />
+          </object>
+        </div>
+        <object className="col">
+          <div className="text-secondary mx-4">Synopsis</div>
+          <input
+            className="text-secondary bg-light p-3 rounded border border-secondary w-100 text-synopsis"
+            type="text"
+            placeholder="Input Synopsis ..."
+            name="synopsis"
+            onChange={(event)=> handleChangeForm(event)}
+            value={form.synopsis}
+          />
+        </object>
         <br />
-        <input
-          type="text"
-          placeholder="Input Category ..."
-          name="category"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.category}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Input Director ..."
-          name="director"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.director}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Input Casts ..."
-          name="cast"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.cast}
-        />
-        <br />
-        <input
-          type="date"
-          placeholder="Input Release Date ..."
-          name="releaseDate"
-          onChange={(event)=> handleChangeForm(event)}
-        />
-        <br />
-        <input
-          type="text"
-          placeholder="Input Duration ..."
-          name="duration"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.duration}
-        />
-        <br />       
-        <input
-          type="text"
-          placeholder="Input Synopsis ..."
-          name="synopsis"
-          onChange={(event)=> handleChangeForm(event)}
-          value={form.synopsis}
-        />
-        <br />
-        <input
-          type="file"
-          name="image"
-          onChange={(event)=> handleChangeForm(event)}
-        />
-        <br />
-        <button type="submit">{isUpdate? "Update" : "Submit"}</button>
-        <button type="reset" onClick={() => resetForm()}>reset</button>
-        <div>
-          {isUpdate? (
-              <img src= {`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${form.image}`}/>
-          ): (
-            image && <img src={image} alt="image movie preview" />
-          )}
+        <div className="d-flex flex-row-reverse m-4">
+          <button className="btn btn-primary mx-4 mt-4 w-25" type="submit">{isUpdate? "Update" : "Submit"}</button>
+          <button className="btn btn-light border border-primary text-primary mx-4 mt-4 w-25" type="reset" onClick={() => resetForm()}>reset</button>  
         </div>
       </form>
       <section className="container" style={{display:"flex"}}>
-        <h3 className="text-right" style={{flex: "1"}}>Data movie</h3>
-        <section style={{flex: "1"}}>
-          <select name="Sort" onClick={(event) => handleSort(event)}>
-            <option value="">Sort</option>
-            <option value ="name ASC">A to Z</option>
-            <option value ="name DESC">Z to A</option>
-          </select>
+        <h3 className="text-bold font-weight-bold" style={{flex: "1"}}>Data movie</h3>
+        <section className="d-flex flex-row-reverse" style={{flex: "1"}}>
           <input
+            className="rounded-4 border border-secondary mx-4 h-100 w-50 text-secondary px-3"
             type="text"
             placeholder="Search Movie Name"
             onChange={(event)=> handleSearchName(event)}
           />
+          <select className="sort mx-2 h-100 w-25 rounded border border-secondary text-secondary p-1" name="Sort" onClick={(event) => handleSort(event)}>
+            <option value="">Sort</option>
+            <option value ="name ASC">A to Z</option>
+            <option value ="name DESC">Z to A</option>
+          </select>
         </section>
       </section>
       <div className="container">
@@ -274,9 +315,9 @@ export default function Managemovie() {
               <span className="visually-hidden">Loading...</span>
             </div>
           ) : (
-              <section className="card-body text-center">
+              <section className="card-block align-content-start container text-center">
                 {movie.data.map((item) => (
-                  <object className="movie__image2 col-xs-8 col-sm-6 col-md-4" key={item.id}>
+                  <object className="view_movie__image2 m-4" key={item.id}>
                       <img
                         src={
                           item.image
@@ -284,23 +325,29 @@ export default function Managemovie() {
                             : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
                         }
                         alt="image"
-                        className="movie__image--size"
+                        className="view_movie__image--size"
                       />
-                    <object >{item.name}</object>
-                    <object >{item.category}</object>
-                    <button onClick={() => handleDetailMovie(item.id)}>Detail</button>
-                    <button className="btn btn-secondary" onClick={() => setUpdate(item)}>
-                      Update
-                    </button>
-                    <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>
-                      Delete
-                    </button>
+                      <object>
+                        <div className="font-weight-bold">{item.name}</div>
+                        <div>{item.category}</div>
+                        <div>
+                          <button className="btn btn-secondary m-2" onClick={() => setUpdate(item)}>
+                            Update
+                          </button>
+                        <div>
+                          <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>
+                            Delete
+                          </button>
+                        </div>
+                        </div>
+                      </object>
                   </object>
                 ))}
               </section>
           )}
       </div>
       <Pagination
+        className="pagination justify-content-center mt-4 page-item"
         previousLabel={"Previous"}
         nextLabel={"Next"}
         breakLabel={"..."}

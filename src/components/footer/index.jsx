@@ -3,7 +3,7 @@ import "./index.css"
 
 function Footer() {
   return (
-    <div className="container">
+    <div className="bg-white">
       <section className="footerweb" style={{display: "flex"}}>
         <object style={{flex: "1"}}>
             <img src={require("../../assets/Tickitz 2.png")} alt="tikits" className="footerweb__logo" />

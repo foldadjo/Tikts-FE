@@ -1,3 +1,6 @@
+.sort {
+}
+
 .month {
   margin: 20px 5% 0;
   text-align: center;
@@ -18,29 +21,26 @@
   color: white;
 }
 
-.movie__view {
-  width: 20%;
-}
-
 .card-block {
   display: flex;
   flex-wrap: wrap;
 }
 
 .view_movie__image2 {
-  flex: 1 0 15%;
+  flex: 1;
   background-color: white;
-  box-shadow: 1px 2px 2px 2px #ededed;
+  /* box-shadow: 1px 2px 2px 2px #ededed; */
+  border: 1px solid lightgray;
   border-radius: 10px;
   padding: 30px;
-  margin: 2% 0;
-  width: 20%;
-  height: 80%;
+  width: 280px;
+  max-width: 280px;
+  /* min-width: 280px; */
 }
 
 .view_movie__image--size {
   background-color: #5f2eea;
   border-radius: 10px;
-  width: 100%;
+  width: 200px;
   height: 300px;
 }

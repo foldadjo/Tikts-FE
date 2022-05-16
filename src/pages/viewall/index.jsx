@@ -60,7 +60,7 @@ export default function Viewall() {
   const getdataMovie = async () => {
     try {
       // PanggilAction
-      const resultmovie =await dispatch(getDataMovie(page, limit,searchDate, searchName, sort))
+      const resultmovie =await dispatch(getDataMovie(page, limit, searchDate, searchName, sort))
       console.log(resultmovie)
     } catch (error) {
       console.log(error.response);
@@ -110,23 +110,24 @@ export default function Viewall() {
   }, [searchDate, searchName, sort]);
 
   return (
-    <div className="container">
+    <div className="container bg-light">
       <h1>View All Page</h1>
       <hr />
       <Navbar/>
       <section className="container" style={{display:"flex"}}>
-        <h3 className="text-right" style={{flex: "1"}}>list movie</h3>
-        <section style={{flex: "1"}}>
-          <select name="Sort" onClick={(event) => handleSort(event)}>
-            <option value="">Sort</option>
-            <option value ="name ASC">A to Z</option>
-            <option value ="name DESC">Z to A</option>
-          </select>
+        <h3 className="text-bold font-weight-bold" style={{flex: "1"}}>list movie</h3>
+        <section className="d-flex flex-row-reverse" style={{flex: "1"}}>
           <input
+            className="m-2 rounded-4 border border-white"
             type="text"
             placeholder="Search Movie Name"
             onChange={(event)=> handleSearchName(event)}
           />
+          <select className="sort m-2 rounded border border-white" name="Sort" onClick={(event) => handleSort(event)}>
+            <option value="">Sort</option>
+            <option value ="name ASC">A to Z</option>
+            <option value ="name DESC">Z to A</option>
+          </select>
         </section>
       </section>
       <div className="month">
@@ -142,7 +143,7 @@ export default function Viewall() {
             </button>
           ))}
       </div>
-      <div className="container">
+      <div className="bg-white">
         {movie.isLoading ? (
             <div className="spinner-border text-primary" role="status">
               <span className="visually-hidden">Loading...</span>
@@ -150,7 +151,7 @@ export default function Viewall() {
           ) : (
               <section className="card-block align-content-start container text-center">
                 {movie.data.map((item) => (
-                  <object className="view_movie__image2 col-xs-6 col-sm-4 col-md-3" key={item.id}>
+                  <object className="view_movie__image2 m-4" key={item.id}>
                       <img
                         src={
                           item.image
@@ -161,10 +162,10 @@ export default function Viewall() {
                         className="view_movie__image--size"
                       />
                       <object>
-                        <div>{item.name}</div>
+                        <div className="font-weight-bold">{item.name}</div>
                         <div>{item.category}</div>
                         <div>
-                          <button data={item} onClick={() => handleDetailMovie(item.id)}>Details</button>
+                          <button className="btn btn-primary" data={item} onClick={() => handleDetailMovie(item.id)}>Details</button>
                         </div>
                       </object>
                   </object>
@@ -173,6 +174,7 @@ export default function Viewall() {
           )}
       </div>
       <Pagination
+        className="pagination justify-content-center mt-4 page-item"
         previousLabel={"Previous"}
         nextLabel={"Next"}
         breakLabel={"..."}

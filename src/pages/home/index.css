@@ -214,6 +214,17 @@
   box-shadow: 2px 20px 20px 20px #ededed;
 }
 
+.join-h2 {
+  color: #4e4b66;
+  font-size: 20px;
+  text-align: center;
+}
+.join-h1 {
+  color: #5f2eea;
+  font-size: 40px;
+  margin-bottom: 50px;
+}
+
 .join__input {
   color: #a0a3bd;
   border: 1px solid #a0a3bd;
@@ -222,6 +233,7 @@
   border-radius: 5px;
   width: 250px;
   margin-right: 20px;
+  align-items: center;
 }
 .join__input:focus {
   color: #5f2eea;

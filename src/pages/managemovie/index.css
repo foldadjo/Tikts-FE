@@ -1,0 +1,28 @@
+.manage-image--size {
+  margin: 5%;
+}
+
+.manage-image--size img {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.btn__submit {
+  background-color: #5f2eea;
+  color: #eff0f6;
+}
+.btn__submit:hover {
+  color: #5f2eea;
+  background-color: #eff0f6;
+}
+
+.btn__reset {
+  color: #5f2eea;
+  background-color: #eff0f6;
+}
+
+.btn__reset:hover {
+  background-color: #5f2eea;
+  color: #eff0f6;
+}
