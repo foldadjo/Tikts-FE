@@ -24,19 +24,22 @@ function Signup() {
     try {
       event.preventDefault();
       const resultRegister = await axios.post("auth/register", form);
-      // const resultName = await axios.get(`user/${resultLogin.data.data.id}`);
-      // const resultUser = [
-      //   {
-      //     id: resultLogin.data.data.id,
-      //     name: resultName.data.data
-      //   }
-      // ];
+      const resultName = await axios.get(`user/${resultRegister.data.data.id}`);
+      console.log(resultRegister)
+      const resultUser = [
+        {
+          id: resultRegister.data.data.id,
+          name: resultName.data.data[0].name,
+          role: resultName.data.data[0].role,
+          image: resultName.data.data[0].image
+        }
+      ];
       setIsError(false);
       setMessage(resultRegister.data.msg);
       localStorage.setItem("token", resultRegister.data.data.token);
       localStorage.setItem("refreshToken", resultRegister.data.data.refreshToken);
-      // localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
-      navigate("/login");
+      localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
+      navigate("/");
 
     } catch (error) {
       console.log(error.response);

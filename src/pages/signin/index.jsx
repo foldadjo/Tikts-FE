@@ -22,11 +22,13 @@ function Login() {
       event.preventDefault();
       const resultLogin = await axios.post("auth/login", form);
       const resultName = await axios.get(`user/${resultLogin.data.data.id}`);
-      console.log(resultName)
+      console.log(resultLogin)
       const resultUser = [
         {
           id: resultLogin.data.data.id,
-          name: resultName.data.data[0].name
+          name: resultName.data.data[0].name,
+          role: resultName.data.data[0].role,
+          image: resultName.data.data[0].image
         }
       ];
       setIsError(false);

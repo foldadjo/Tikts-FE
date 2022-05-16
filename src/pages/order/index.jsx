@@ -26,11 +26,9 @@ export default function Order() {
       setSelectedSeat(deleteSeat);
     } else {
       setSelectedSeat([...selectedSeat, seat]);
-      const allseat = selectedSeat + "," + seat
-      const totalPayment = allseat.split(",").length * data[0].price
-      setDataOrder({ ...dataOrder, seat: allseat.split(","), totalPayment});
     }
   };
+  console.log(selectedSeat)
 
   useEffect(() => {
     handleBookingData();
@@ -61,7 +59,13 @@ export default function Order() {
   }
 
   const handleBooking = () => {
-    navigate("/payment", { state: dataOrder })
+    const setDataBooking = { 
+      ...dataOrder,
+      seat: selectedSeat.join(),
+      totalPayment: selectedSeat.length*data[0].price
+    }
+    console.log(setDataBooking)
+    navigate("/payment", { state: setDataBooking})
     console.log(state);
     console.log(selectedSeat);
     console.log(dataOrder);
@@ -177,6 +181,13 @@ export default function Order() {
                   Seat choosed
                 </object>
                 <object className="info__detail--value">{selectedSeat + ""} </object>
+              </div>
+              <hr />
+              <div style={{display: "flex"}} className="info__detail">
+                <object style={{flex: "1"}} className="info__detail--title">
+                  Total Price
+                </object>
+                <object className="info__detail--value">{selectedSeat.length*data[0]?.price} </object>
               </div>
             </div>
           </div>

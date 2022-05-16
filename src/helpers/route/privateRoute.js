@@ -13,7 +13,7 @@ export default function privateRoute(props) {
   }
 
   if (props.isAdmin && dataUser.role !== "admin") {
-    return <Navigate to="/unauthorized" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
   return <Outlet />;
 }

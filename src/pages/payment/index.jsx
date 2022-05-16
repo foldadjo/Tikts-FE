@@ -13,6 +13,8 @@ export default function Payment() {
   const [dataOrder, setDataOrder] = useState(state);
   const [dataBooking, setDataBooking] = useState()
 
+  console.log(state)
+
   useEffect(() => {
     handleBookingData();
   }, []);
@@ -94,7 +96,7 @@ export default function Payment() {
                     <object style={{flex: "1"}} className="info__detail--title">
                         Number of tickets
                     </object>
-                    <object className="info__detail--value">{state.seat.length} pieces</object>
+                    <object className="info__detail--value">{state.seat.split(",").length} pieces</object>
                     </div>
                 </div>
                 <hr className="dropdown-divider" />

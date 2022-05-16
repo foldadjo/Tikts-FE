@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar"
 import Footer from "../../components/footer"
 import Pagination from "react-paginate";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, createSearchParams, useSearchParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import {getDataMovie, postMovie, updateMovie, deleteMovie} from "../../stores/action/movie"
 import "./index.css"
@@ -13,7 +13,6 @@ export default function Managemovie() {
   document.title = "Manage Movie Page|| Tickitz";
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const [searchmovie, setSearchmovie] = useState("");
   const [page, setPage] = useState(1);
   const [form, setForm] = useState({
     name:"",
@@ -32,9 +31,14 @@ export default function Managemovie() {
   const [isUpdate, setIsUpdate] = useState(false);
   const [image, setImage] = useState(null);
 
+  const [searchParams] = useSearchParams();
+  const params = Object.fromEntries([...searchParams]);
+
   useEffect(() => {
     getdataMovie();
   }, [page]);
+
+  
 
   const handlePagination = (data) => {
     setPage(data.selected + 1);
@@ -45,7 +49,7 @@ export default function Managemovie() {
   const getdataMovie = async () => {
     try {
       // PanggilAction
-      const resultmovie =await dispatch(getDataMovie(page, limit))
+      const resultmovie =await dispatch(getDataMovie(page, limit, "", searchName, sort))
       console.log(resultmovie)
     } catch (error) {
       console.log(error.response);
@@ -95,6 +99,7 @@ export default function Managemovie() {
     });
     setIdMovie(id);
     setIsUpdate(true);
+    console.log(data)
   };
 
   const handleUpdate = async (e) => {
@@ -127,10 +132,48 @@ export default function Managemovie() {
     setForm({
       name: "",
       category: "",
+      director: "",
+      cast: "",
+      releaseDate: null,
+      duration: "",
       synopsis: "",
       image: null
     });
   };
+  const [sort, setSort] = useState(null);
+  const [searchName, setSearchName] = useState("")
+  const [isError, setIsError] = useState(false);
+
+  const handleSort = (event) => {
+    setSort(event.target.value)
+  }
+
+  const handleSearchName = async (event) => {
+    try {
+      // event = JSON.parse(event);
+      setSearchName(event.target.value);
+      getdataMovie()
+      console.log(event)
+    }
+    catch (error) {
+      setIsError(true);
+    }
+  }
+
+  useEffect(() => {
+    getdataMovie();
+    const params = {};
+    if (searchName !== "") {
+      params.searchName = searchName;
+    }
+    if (sort !== null) {
+      params.sort = sort;
+    } else ("")
+    navigate({
+      pathname: "/managemovie",
+      search: `?${createSearchParams(params)}`
+    });
+  }, [searchName, sort]);
 
 
   return (
@@ -157,6 +200,37 @@ export default function Managemovie() {
         <br />
         <input
           type="text"
+          placeholder="Input Director ..."
+          name="director"
+          onChange={(event)=> handleChangeForm(event)}
+          value={form.director}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Input Casts ..."
+          name="cast"
+          onChange={(event)=> handleChangeForm(event)}
+          value={form.cast}
+        />
+        <br />
+        <input
+          type="date"
+          placeholder="Input Release Date ..."
+          name="releaseDate"
+          onChange={(event)=> handleChangeForm(event)}
+        />
+        <br />
+        <input
+          type="text"
+          placeholder="Input Duration ..."
+          name="duration"
+          onChange={(event)=> handleChangeForm(event)}
+          value={form.duration}
+        />
+        <br />       
+        <input
+          type="text"
           placeholder="Input Synopsis ..."
           name="synopsis"
           onChange={(event)=> handleChangeForm(event)}
@@ -168,22 +242,29 @@ export default function Managemovie() {
           name="image"
           onChange={(event)=> handleChangeForm(event)}
         />
-        {image && <img src={image} alt="image movie preview" />}
         <br />
         <button type="submit">{isUpdate? "Update" : "Submit"}</button>
+        <button type="reset" onClick={() => resetForm()}>reset</button>
+        <div>
+          {isUpdate? (
+              <img src= {`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${form.image}`}/>
+          ): (
+            image && <img src={image} alt="image movie preview" />
+          )}
+        </div>
       </form>
       <section className="container" style={{display:"flex"}}>
         <h3 className="text-right" style={{flex: "1"}}>Data movie</h3>
         <section style={{flex: "1"}}>
-          <select name="Sort">
+          <select name="Sort" onClick={(event) => handleSort(event)}>
             <option value="">Sort</option>
-            <option value="jakarta">A to Z</option>
-            <option value="bogor">Z to A</option>
+            <option value ="name ASC">A to Z</option>
+            <option value ="name DESC">Z to A</option>
           </select>
           <input
             type="text"
             placeholder="Search Movie Name"
-            onChange={()=> setSearchmovie}
+            onChange={(event)=> handleSearchName(event)}
           />
         </section>
       </section>

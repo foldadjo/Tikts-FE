@@ -1,15 +1,34 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react'
+import { useNavigate, useLocation, Navigate, Outlet } from "react-router-dom";
+import "./index.css"
 
 function Navbar() {
-  const dataUser = JSON.parse(localStorage.getItem("dataUser"));
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  let dataUser = localStorage.getItem("dataUser");
+  dataUser = JSON.parse(dataUser);
+  // console.log(dataUser)
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
   const handleHomepage = () => {
     navigate("/");
+  };
+  const handleViewall = () => {
+    navigate("/viewall");
+  };
+  const handlemanageSchedule = () => {
+    navigate("/manageschedule");
+  };
+  const handlemanageMovie = () => {
+    navigate("/managemovie");
+  };
+  const handleProfile = () => {
+    navigate("/profile");
+  };
+  const handleDashboard = () => {
+    navigate("/dashboard");
   };
 
   return (
@@ -39,26 +58,78 @@ function Navbar() {
         <div
           className="collapse navbar-collapse"
           id="navbarSupportedContent"
-        >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        >    
+          {!token ? (
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li><hr className="dropdown-divider" /></li>
             <li className="nav-item">
               <a className="nav-link" onClick={handleHomepage}>Home</a>
             </li>
             <li><hr className="dropdown-divider" /></li>
             <li className="nav-item">
-              <a className="nav-link" href="#">List Movie</a>
+              <a className="nav-link" onClick={handleViewall}>List Movie</a>
             </li>
             <li><hr className="dropdown-divider" /></li>
           </ul>
+          ) : (
+          (dataUser.role !== "admin") ? (
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li><hr className="dropdown-divider" /></li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={handleHomepage}>Home</a>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={handleViewall}>List Movie</a>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+            </ul>
+          ):(
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li><hr className="dropdown-divider" /></li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={handleDashboard}>Dashboard</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={handlemanageMovie}>Manage Movie</a>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={handlemanageSchedule}>Manage Schedule</a>
+              </li>
+              <li><hr className="dropdown-divider" /></li>
+            </ul>
+          ))}
           <a>
+          {!token ?(
             <button
               className="btn btn-outline-success bg-white"
               onClick={() => handleLogout()}
               type="submit"
             >
-              Log out
+              Sign Up
             </button>
+          ) : (
+            <div>
+              <button
+                className="btn btn-outline-success bg-white"
+                onClick={() => handleLogout()}
+                type="submit"
+              >
+                Log out
+              </button>
+              <img
+              onClick={() => handleProfile()}
+              className="profileImage"
+                src={
+                  dataUser.image != ("" || undefined)
+                    ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${dataUser.image}`
+                    : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                }
+                alt="image"
+              />
+            </div>
+          )}
           </a>
           <ul className="navbar-nav mb-2 mb-lg-0">
             <li><hr className="dropdown-divider" /></li>

@@ -1,9 +1,11 @@
 import axios from "../../utils/axios";
 
-export const getDataMovie = (page, limit) => {
+export const getDataMovie = (page, limit, releaseDate, searchName, sort) => {
   return {
     type: "GET_DATA_MOVIE",
-    payload: axios.get(`movie?page=${page}&limit=${limit}`)
+    payload: axios.get(
+      `movie?page=${page}&searchRelease=${releaseDate}&limit=${limit}&searchName=${searchName}&sort=${sort}`
+    )
   };
 };
 

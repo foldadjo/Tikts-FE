@@ -1,0 +1,10 @@
+.profileImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin: 0 10px;
+}
+
+.nav-link {
+  cursor: pointer;
+}

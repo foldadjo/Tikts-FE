@@ -141,7 +141,7 @@ export default function Detail() {
                 </button>
               ))}
               <br />
-              <br />
+              <div className="item-left">Rp. {item.price} / seat</div> 
               <button
               disabled={item.id === dataOrder.scheduleId ? false : true}
               className="box__button"
