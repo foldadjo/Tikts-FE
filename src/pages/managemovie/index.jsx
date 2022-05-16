@@ -22,7 +22,7 @@ export default function Managemovie() {
     releaseDate:"",
     duration:"",
     synopsis:"",
-    image: null
+    image: ""
   });
   const limit = 8;
   const movie = useSelector((state) => state.movie)
@@ -38,22 +38,16 @@ export default function Managemovie() {
     getdataMovie();
   }, [page]);
 
-  
-
   const handlePagination = (data) => {
     setPage(data.selected + 1);
   };
   useEffect(() => {
     getdataMovie();
   }, []);
-  const getdataMovie = async () => {
-    try {
+  const getdataMovie = () => {
       // PanggilAction
-      const resultmovie =await dispatch(getDataMovie(page, limit, "", searchName, sort))
+      const resultmovie = dispatch(getDataMovie(page, limit, "", searchName, sort))
       console.log(resultmovie)
-    } catch (error) {
-      console.log(error.response);
-    }
   };
 
   const handleChangeForm = (event) => {
@@ -67,21 +61,21 @@ export default function Managemovie() {
     }
   }
 
-  const handleDetailMovie = (id) => {
-    navigate(`/detail/${id}`);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(form);
-    const formData = new FormData();
-    for (const data in form) {
-      formData.append(data, form[data]);
+  const handleSubmit = async(e) => {
+    try{
+      e.preventDefault();
+      console.log(form);
+      const formData = new FormData();
+      for (const data in form) {
+        formData.append(data, form[data]);
+      }
+      await dispatch(postMovie(formData));
+      getdataMovie();
+      setImage(null);
+      await resetForm();
+    } catch (error) {
+      console.log(error.response);
     }
-    dispatch(postMovie(formData));
-    getdataMovie();
-    setImage(null);
-    resetForm();
   };
 
   const setUpdate = (data) => {
@@ -137,7 +131,7 @@ export default function Managemovie() {
       releaseDate: null,
       duration: "",
       synopsis: "",
-      image: null
+      image: ""
     });
   };
   const [sort, setSort] = useState(null);
@@ -189,7 +183,7 @@ export default function Managemovie() {
                   (<img src= {`https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${form.image}`}/>)
                   :(image && <img src={image} alt="image movie preview" />)
               ): (!image?(
-                  <img src="https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg" alt="image" />)
+                  <img src="https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png" alt="image" />)
                   :
                   (image && <img src={image} alt="image movie preview" />)
               )}
@@ -238,7 +232,7 @@ export default function Managemovie() {
                   className="text-secondary bg-light m-2 p-3 rounded border border-secondary w-100"
                   type="text"
                   placeholder="Input Casts ..."
-                  name="casts"
+                  name="cast"
                   onChange={(event)=> handleChangeForm(event)}
                   value={form.cast}
                 />
@@ -322,7 +316,7 @@ export default function Managemovie() {
                         src={
                           item.image
                             ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${item.image}`
-                            : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
+                            : "https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png"
                         }
                         alt="image"
                         className="view_movie__image--size"
