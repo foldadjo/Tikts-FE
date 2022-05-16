@@ -23,7 +23,7 @@
 .view_movie__image--size {
   border-radius: 10px;
   width: 100%;
-  height: 300px;
+  height: 250px;
 }
 
 .btn__submit {
@@ -43,4 +43,14 @@
 .btn__reset:hover {
   background-color: #5f2eea;
   color: #eff0f6;
+}
+
+@media (max-width: 1000px) {
+  .view_movie__image2 {
+    /* flex-direction: column; */
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    height: auto;
+  }
 }
