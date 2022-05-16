@@ -91,6 +91,9 @@ export default function Detail() {
               </div>
             </object>
           </div>
+          <hr />
+          <div className="detail__spesific--title">Synopsis</div>
+          <div className="detail__spesific--content">{(data.map((item)=>(item.synopsis)))[0]}</div>
         </object>
       </section>
       <hr />
