@@ -118,12 +118,12 @@ export default function Viewall() {
         <h3 className="text-bold font-weight-bold" style={{flex: "1"}}>list movie</h3>
         <section className="d-flex flex-row-reverse" style={{flex: "1"}}>
           <input
-            className="m-2 rounded-4 border border-white"
+            className="rounded-4 border border-secondary mx-4 h-100 w-50 text-secondary px-3"
             type="text"
             placeholder="Search Movie Name"
             onChange={(event)=> handleSearchName(event)}
           />
-          <select className="sort m-2 rounded border border-white" name="Sort" onClick={(event) => handleSort(event)}>
+          <select className="sort mx-2 h-100 w-25 rounded border border-secondary text-secondary p-1" name="Sort" onClick={(event) => handleSort(event)}>
             <option value="">Sort</option>
             <option value ="name ASC">A to Z</option>
             <option value ="name DESC">Z to A</option>
