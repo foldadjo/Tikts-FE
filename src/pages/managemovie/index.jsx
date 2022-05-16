@@ -131,7 +131,7 @@ export default function Managemovie() {
       releaseDate: null,
       duration: "",
       synopsis: "",
-      image: ""
+      image: "https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png"
     });
   };
   const [sort, setSort] = useState(null);
