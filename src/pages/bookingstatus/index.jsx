@@ -32,7 +32,7 @@ function Bookingstatus() {
         <h1>
             Movie : {dataSchedule.map((item)=>(item.name))}
         </h1>
-        <h1>
+        {/* <h1>
             Booking Id : {state.bookingId}
         </h1>
         <h1>
@@ -53,7 +53,7 @@ function Bookingstatus() {
         <h1>
             Premiere : {dataSchedule.map((item)=>(item.premiere))}
         </h1>
-            
+             */}
         <br />
         <button onClick={handleHomepage}>Home Page</button>
     </div>
