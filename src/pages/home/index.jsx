@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+/* eslint-disable jsx-a11y/img-redundant-alt */
+import React, { useEffect, useState } from "react";
 import axios from "../../utils/axios";
 // import Pagination from "react-paginate";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ function Home() {
     { number: 9, title: "September" },
     { number: 10, title: "Oktober" },
     { number: 11, title: "November" },
-    { number: 12, title: "Desember" },
+    { number: 12, title: "Desember" }
   ];
   const [page, setPage] = useState(1);
   const [data, setData] = useState([]);
@@ -102,10 +103,7 @@ function Home() {
             </div>
             <div className="dropdown-content">
               <div className="dropdown-content--title">{item.name}</div>
-              <div
-                className="dropdown-content--category"
-                style={{ color: "#a0a3bd" }}
-              >
+              <div className="dropdown-content--category" style={{ color: "#a0a3bd" }}>
                 {item.category}
               </div>
               <div href="detail.html">
@@ -131,9 +129,7 @@ function Home() {
         {month.map((item) => (
           <button
             className={`month__text ${
-              item.number === releaseDate
-                ? "btn-primary"
-                : "btn-outline-primary"
+              item.number === releaseDate ? "btn-primary" : "btn-outline-primary"
             }`}
             onClick={() => setReleaseDate(item.number)}
             key={item.number}
@@ -169,11 +165,7 @@ function Home() {
       <section className="join">
         <h2 className="join-h2">Be the vangeard of the</h2>
         <h1 className="join-h1">Moviegoers</h1>
-        <input
-          className="join__input"
-          type="email"
-          placeholder="Type your email"
-        />
+        <input className="join__input" type="email" placeholder="Type your email" />
         <button className="join__input--button">join now</button>
         <div className="join__desc">
           <div>By joining as a Tickits member,</div>

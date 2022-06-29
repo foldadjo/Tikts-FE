@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams, useLocation, useParams, useNavigate } from "react-router-dom";
 import axios from "../../utils/axios";
-import Navbar from "../../components/navbar"
-import Footer from "../../components/footer"
-import "./index.css"
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import "./index.css";
 
 export default function Detail() {
   document.title = "Tickitz | Detail";
@@ -29,8 +29,7 @@ export default function Detail() {
       const resultMovie = await axios.get(`movie/${params.id}`);
       setData(resultMovie.data.data);
     } catch (error) {
-      setIsError(true);
-      setMessage(error.response.data.msg);
+      console.log(error.response.data.msg);
     }
   };
 
@@ -39,8 +38,7 @@ export default function Detail() {
       const resultSchedule = await axios.get(`schedule?searchMovieId=${params.id}`);
       setDataSchedule(resultSchedule.data.data);
     } catch (error) {
-      setIsError(true);
-      setMessage(error.response.data.msg);
+      console.log(error.response.data.msg);
     }
   };
   console.log(dataOrder);
@@ -58,56 +56,62 @@ export default function Detail() {
 
   return (
     <div className="text-center container">
-      <Navbar/>
+      <Navbar />
       <h1>Detail Page</h1>
       <hr />
-      <section className="banner" >
-        <object className="banner__image" >
+      <section className="banner">
+        <object className="banner__image">
           <img
             src={
-              (data.map((item)=>(item.image)))[0]
-                ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${(data.map((item)=>(item.image)))[0]}`
+              data.map((item) => item.image)[0]
+                ? `https://res.cloudinary.com/fazztrack/image/upload/v1650942515/${
+                    data.map((item) => item.image)[0]
+                  }`
                 : "https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
-              }
+            }
             className="banner__image-image"
           />
         </object>
-        <object className="banner__detail" >
-          <h1>{(data.map((item)=>(item.name)))[0]}</h1>
-          <div className="banner__detail--category">{(data.map((item)=>(item.category)))[0]}</div>
+        <object className="banner__detail">
+          <h1>{data.map((item) => item.name)[0]}</h1>
+          <div className="banner__detail--category">{data.map((item) => item.category)[0]}</div>
           <div className="banner__detail--spesific">
             <object className="detail__kiri">
               <div className="detail__spesific--title">release date</div>
-              <div className="detail__spesific--content">{(data.map((item)=>(item.releaseDate)))[0]}</div>
+              <div className="detail__spesific--content">
+                {data.map((item) => item.releaseDate)[0]}
+              </div>
               <div className="detail__spesific--title">Duration</div>
-              <div className="detail__spesific--content">{(data.map((item)=>(item.duration)))[0]}</div>
+              <div className="detail__spesific--content">
+                {data.map((item) => item.duration)[0]}
+              </div>
             </object>
             <object className="detail__kanan">
               <div className="detail__spesific--title">Directed by</div>
-              <div className="detail__spesific--content">{(data.map((item)=>(item.director)))[0]}</div>
-              <div className="detail__spesific--title">Casts</div>
               <div className="detail__spesific--content">
-                {(data.map((item)=>(item.cast)))[0]}
+                {data.map((item) => item.director)[0]}
               </div>
+              <div className="detail__spesific--title">Casts</div>
+              <div className="detail__spesific--content">{data.map((item) => item.cast)[0]}</div>
             </object>
           </div>
           <hr />
           <div className="detail__spesific--title">Synopsis</div>
-          <div className="detail__spesific--content">{(data.map((item)=>(item.synopsis)))[0]}</div>
+          <div className="detail__spesific--content">{data.map((item) => item.synopsis)[0]}</div>
         </object>
       </section>
       <hr />
       <section className="sometimes">
         <div className="sometimes__header">Showtimes and Ticket</div>
-        <section className="sometimes__button" style={{display: "flex"}}>
+        <section className="sometimes__button" style={{ display: "flex" }}>
           <input
             type="date"
             placeholder="Set a Date"
             value={dataOrder.dateBooking}
             className="sometimes__button1"
-            style={{flex: "1"}}
+            style={{ flex: "1" }}
           />
-          <select name="location" className="sometimes__button2" style={{flex: "1"}}>
+          <select name="location" className="sometimes__button2" style={{ flex: "1" }}>
             <option value="">Select Location</option>
             <option value="jakarta">Jakarta</option>
             <option value="bogor">Bogor</option>
@@ -115,43 +119,48 @@ export default function Detail() {
           </select>
         </section>
         <section className="premier">
-          {dataSchedule.map((item)=>(
+          {dataSchedule.map((item) => (
             <object className="premier__box" key={item.id}>
               <div className="box__header">
-                <object style={{flex: "1"}}>
+                <object style={{ flex: "1" }}>
                   <img
-                    src={item.premiere==="Ebu.Id"?require("../../assets/logo ebv.png")
-                    :item.premiere==="hiflix"?require("../../assets/logo hiflix.png")
-                    :item.premiere==="cinemaOne"?require("../../assets/logo cineone.png")
-                    :require("../../assets/Tickitz 2.png")}
+                    src={
+                      item.premiere === "Ebu.Id"
+                        ? require("../../assets/logo ebv.png")
+                        : item.premiere === "hiflix"
+                        ? require("../../assets/logo hiflix.png")
+                        : item.premiere === "cinemaOne"
+                        ? require("../../assets/logo cineone.png")
+                        : require("../../assets/Tickitz 2.png")
+                    }
                     alt="logo"
                     className="box__image"
                   />
                 </object>
-                <object style={{flex: "1"}} className="box__detail">
+                <object style={{ flex: "1" }} className="box__detail">
                   <h1>{item.premiere}</h1>
                   <div>{item.location}</div>
                 </object>
               </div>
               <hr />
-              {item.time.split(",").map((itemTime)=>(
-                <button 
-                key={itemTime} 
-                onClick={() => changeDataBooking({ timeBooking: itemTime, scheduleId: item.id })} 
-                className="box__time"
+              {item.time.split(",").map((itemTime) => (
+                <button
+                  key={itemTime}
+                  onClick={() => changeDataBooking({ timeBooking: itemTime, scheduleId: item.id })}
+                  className="box__time"
                 >
                   {itemTime}
                 </button>
               ))}
               <br />
-              <div className="item-left">Rp. {item.price} / seat</div> 
+              <div className="item-left">Rp. {item.price} / seat</div>
               <button
-              disabled={item.id === dataOrder.scheduleId ? false : true}
-              className="box__button"
-              onClick={handleBooking}
-            >
-              Booking
-            </button>
+                disabled={item.id === dataOrder.scheduleId ? false : true}
+                className="box__button"
+                onClick={handleBooking}
+              >
+                Booking
+              </button>
             </object>
           ))}
         </section>
@@ -159,7 +168,7 @@ export default function Detail() {
       <hr />
       {/* <h5>Detail Order Data</h5>
       <h6>{JSON.stringify(dataOrder)}</h6> */}
-      <Footer/>
+      <Footer />
     </div>
   );
 }

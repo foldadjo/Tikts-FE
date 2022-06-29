@@ -5,6 +5,10 @@ export default function Seat(props) {
   const { rowSeat, selectedSeat, reserved, selected } = props;
   const [leftSeat, setLeftSeat] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [rightSeat, setRightSeat] = useState([8, 9, 10, 11, 12, 13, 14]);
+  const [dataOrder, setDataOrder] = useState({
+    // movieId: params.id,
+    // dateBooking: new Date().toISOString().split("T")[0]
+  });
 
   useEffect(() => {
     setupSeat();
@@ -15,6 +19,10 @@ export default function Seat(props) {
     const rightSeatRow = rightSeat.map((item) => `${rowSeat}${item}`);
     setLeftSeat(leftSeatRow);
     setRightSeat(rightSeatRow);
+  };
+
+  const changeDataBooking = (data) => {
+    setDataOrder({ ...dataOrder, ...data });
   };
 
   return (
@@ -32,7 +40,7 @@ export default function Seat(props) {
                   : "seat__list--available"
               }`}
               onClick={() => {
-                reserved.includes(item) ? changeDataBooking({seat: item}) : selectedSeat(item);
+                reserved.includes(item) ? changeDataBooking({ seat: item }) : selectedSeat(item);
               }}
             ></div>
           </div>
@@ -50,7 +58,7 @@ export default function Seat(props) {
                   : "seat__list--available"
               }`}
               onClick={() => {
-                reserved.includes(item) ? changeDataBooking({seat: item}) : selectedSeat(item);
+                reserved.includes(item) ? changeDataBooking({ seat: item }) : selectedSeat(item);
               }}
             ></div>
           </div>

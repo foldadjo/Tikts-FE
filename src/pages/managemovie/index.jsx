@@ -1,26 +1,16 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 // import axios from "../../utils/axios";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Pagination from "react-paginate";
-import {
-  useNavigate,
-  createSearchParams,
-  useSearchParams,
-} from "react-router-dom";
+import { useNavigate, createSearchParams, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getDataMovie,
-  postMovie,
-  updateMovie,
-  deleteMovie,
-} from "../../stores/action/movie";
+import { getDataMovie, postMovie, updateMovie, deleteMovie } from "../../stores/action/movie";
 import "./index.css";
 
 export default function Managemovie() {
   document.title = "Manage Movie Page|| Tickitz";
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const [form, setForm] = useState({
@@ -31,7 +21,7 @@ export default function Managemovie() {
     releaseDate: "",
     duration: "",
     synopsis: "",
-    image: "",
+    image: ""
   });
   const limit = 8;
   const movie = useSelector((state) => state.movie);
@@ -55,9 +45,7 @@ export default function Managemovie() {
   }, []);
   const getdataMovie = () => {
     // PanggilAction
-    const resultmovie = dispatch(
-      getDataMovie(page, limit, "", searchName, sort)
-    );
+    const resultmovie = dispatch(getDataMovie(page, limit, "", searchName, sort));
     console.log(resultmovie);
   };
 
@@ -90,17 +78,7 @@ export default function Managemovie() {
   };
 
   const setUpdate = (data) => {
-    const {
-      id,
-      name,
-      category,
-      director,
-      cast,
-      releaseDate,
-      duration,
-      synopsis,
-      image,
-    } = data;
+    const { id, name, category, director, cast, releaseDate, duration, synopsis, image } = data;
     setForm({
       ...form,
       name,
@@ -110,7 +88,7 @@ export default function Managemovie() {
       releaseDate,
       duration,
       synopsis,
-      image,
+      image
     });
     setIdMovie(id);
     setIsUpdate(true);
@@ -152,13 +130,11 @@ export default function Managemovie() {
       releaseDate: null,
       duration: "",
       synopsis: "",
-      image:
-        "https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png",
+      image: "https://pertaniansehat.com/v01/wp-content/uploads/2015/08/default-placeholder.png"
     });
   };
   const [sort, setSort] = useState(null);
   const [searchName, setSearchName] = useState("");
-  const [isError, setIsError] = useState(false);
 
   const handleSort = (event) => {
     setSort(event.target.value);
@@ -171,34 +147,16 @@ export default function Managemovie() {
       getdataMovie();
       console.log(event);
     } catch (error) {
-      setIsError(true);
+      console.log(error);
     }
   };
-
-  useEffect(() => {
-    getdataMovie();
-    const params = {};
-    if (searchName !== "") {
-      params.searchName = searchName;
-    }
-    if (sort !== null) {
-      params.sort = sort;
-    } else "";
-    navigate({
-      pathname: "/managemovie",
-      search: `?${createSearchParams(params)}`,
-    });
-  }, [searchName, sort]);
 
   return (
     <div className="container bg-light">
       <h1>Manage Movie Page</h1>
       <hr />
       <Navbar />
-      <form
-        className="bg-white p-5 m-4"
-        onSubmit={isUpdate ? handleUpdate : handleSubmit}
-      >
+      <form className="bg-white p-5 m-4" onSubmit={isUpdate ? handleUpdate : handleSubmit}>
         <div className="row">
           <object className="col-3">
             <div className="card manage-image--size p-4 m-4">
@@ -293,11 +251,7 @@ export default function Managemovie() {
               </object>
             </div>
             <br />
-            <input
-              type="file"
-              name="image"
-              onChange={(event) => handleChangeForm(event)}
-            />
+            <input type="file" name="image" onChange={(event) => handleChangeForm(event)} />
             <br />
           </object>
         </div>
@@ -370,17 +324,11 @@ export default function Managemovie() {
                   <div className="font-weight-bold">{item.name}</div>
                   <div>{item.category}</div>
                   <div>
-                    <button
-                      className="btn btn-secondary m-2"
-                      onClick={() => setUpdate(item)}
-                    >
+                    <button className="btn btn-secondary m-2" onClick={() => setUpdate(item)}>
                       Update
                     </button>
                     <div>
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => handleDelete(item.id)}
-                      >
+                      <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>
                         Delete
                       </button>
                     </div>

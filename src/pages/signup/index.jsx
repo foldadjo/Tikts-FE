@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import "./index.css"
+import React, { useState } from "react";
+import "./index.css";
 import axios from "../../utils/axios";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,7 @@ function Signup() {
       event.preventDefault();
       const resultRegister = await axios.post("auth/register", form);
       const resultName = await axios.get(`user/${resultRegister.data.data.id}`);
-      console.log(resultRegister)
+      console.log(resultRegister);
       const resultUser = [
         {
           id: resultRegister.data.data.id,
@@ -40,7 +40,6 @@ function Signup() {
       localStorage.setItem("refreshToken", resultRegister.data.data.refreshToken);
       localStorage.setItem("dataUser", JSON.stringify(resultUser[0]));
       navigate("/");
-
     } catch (error) {
       console.log(error.response);
       setIsError(true);
@@ -91,7 +90,7 @@ function Signup() {
           <input
             type="text"
             placeholder="Write your last name"
-            name='lastName'
+            name="lastName"
             value={form.lastName}
             className="join__input"
             onChange={handleChangeForm}
@@ -100,7 +99,7 @@ function Signup() {
           <input
             type="tel"
             placeholder="Write your number phone"
-            name='noTelp'
+            name="noTelp"
             value={form.noTelp}
             className="join__input"
             onChange={handleChangeForm}
@@ -109,7 +108,7 @@ function Signup() {
           <input
             type="email"
             placeholder="Write your email"
-            name='email'
+            name="email"
             value={form.email}
             className="join__input"
             onChange={handleChangeForm}
@@ -118,32 +117,37 @@ function Signup() {
           <input
             type="password"
             placeholder="Write your password"
-            name='password'
+            name="password"
             value={form.password}
             className="join__input"
             onChange={handleChangeForm}
           />
           <div>
-          {!message ? null : isError ? (
-            <div className="alert alert-danger" role="alert">
-              {message}
-            </div>
-          ) : (
-            <div className="alert alert-primary" role="alert">
-              {message}
-            </div>
-          )}
+            {!message ? null : isError ? (
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            ) : (
+              <div className="alert alert-primary" role="alert">
+                {message}
+              </div>
+            )}
           </div>
           <div>
-            <button className="signup__button" type='submit'>Sign Up</button>
+            <button className="signup__button" type="submit">
+              Sign Up
+            </button>
           </div>
         </form>
         <div className="header__signup--comment">
-          Already have account? <a onClick={handleSignin} className="signin">Sign In</a>
+          Already have account?{" "}
+          <a onClick={handleSignin} className="signin">
+            Sign In
+          </a>
         </div>
       </div>
     </main>
-  )
+  );
 }
 
-export default Signup
+export default Signup;
